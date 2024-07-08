@@ -1,4 +1,4 @@
-FROM dyne/devuan:beowulf as BUILD
+FROM dyne/devuan:beowulf AS build
 
 WORKDIR /root
 COPY service_udhcpc service_udhcpc
@@ -11,7 +11,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get --allow-releaseinfo-change update && apt-get install -y --no-install-recommends \
     build-essential \
     nanomsg-utils \
-    libnanomsg-dev
+    libnanomsg-dev \
+    && apt-get clean
 
 WORKDIR /root/service_udhcpc
 RUN sh build.sh
@@ -35,8 +36,8 @@ COPY ./rg/sysevent /usr/bin/
 COPY ./rg/dmcli /usr/bin/
 COPY ./rg/getpp /usr/bin/
 COPY ./rg/scratchpadctl /usr/bin/
-COPY --from=BUILD /root/service_udhcpc/service_udhcpc /usr/bin
-COPY --from=BUILD /root/wanmgr_ipc/wanmgr_ipc /usr/bin
+COPY --from=build /root/service_udhcpc/service_udhcpc /usr/bin
+COPY --from=build /root/wanmgr_ipc/wanmgr_ipc /usr/bin
 COPY ./rg/wanmgr_ipc_user_script.sh /etc/
 COPY ./rg/wanmgr_pipe /usr/bin
 COPY ./rg/udhcpc_vlan.script /etc/
@@ -49,9 +50,9 @@ COPY ./rg/client-notify.sh /etc/dibbler/
 COPY ./rg/client.conf-basic /etc/dibbler/
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV EROUTER_VLAN 131
-ENV MGMT_VLAN 121
-ENV VOICE_VLAN 117
+ENV EROUTER_VLAN=131
+ENV MGMT_VLAN=121
+ENV VOICE_VLAN=117
 
 # hadolint ignore=DL3008,DL4005
 RUN apt-get --allow-releaseinfo-change update && apt-get install -y --no-install-recommends \
