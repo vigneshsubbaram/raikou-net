@@ -8,7 +8,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Install essential packages
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    curl=7.88.1-10+deb12u5 \
+    curl=7.88.1-10+deb12u6  \
     iproute2=6.1.0-3 \
     iptables=1.8.9-2 \
     iputils-ping=3:20221126-1 \
@@ -18,7 +18,7 @@ RUN apt-get update && \
     psmisc=23.6-1 \
     tcpdump=4.99.3-1 \
     traceroute=1:2.1.2-1 \
-    python3=3.11.2-6 \
+    python3.11=3.11.2-6+deb12u2 \
     python3-uvicorn=0.17.6-1 \
     python3-fastapi=0.92.0-1 \
     python3-httpx=0.23.3-1 \
@@ -48,7 +48,7 @@ COPY ./resources/kea-dhcp6.conf /etc/kea/
 COPY ./resources/keactrl.conf /etc/kea/
 COPY ./resources/keactrl /usr/sbin/
 
-ENV PATH "/sbin:/bin:/usr/sbin:/usr/bin"
+ENV PATH="/sbin:/bin:/usr/sbin:/usr/bin"
 ENV LEGACY=yes
 ENV FAST_API=no
 
