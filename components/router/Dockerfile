@@ -56,7 +56,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     automake=1:1.16.5-1.3 \
     flex=2.6.4-8.2 \
     bison=2:3.8.2+dfsg-1+b1 \
-    curl=7.88.1-10+deb12u5 \
+    curl=7.88.1-10+deb12u6 \
     ca-certificates=20230311 \
     gnupg=2.2.40-1.1 \
     lsb-release=12.0-1 \
