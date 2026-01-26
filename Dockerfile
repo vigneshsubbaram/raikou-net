@@ -1,7 +1,7 @@
-FROM docker:27.3.1-alpine3.20
+FROM docker:29.1.4-alpine3.23
 
 LABEL maintainer="ktewari@libertyglobal.com"
-LABEL version="alpine3.20-dind-27.3.1"
+LABEL version="alpine3.23-dind-29.1.4"
 
 WORKDIR /root
 
@@ -44,5 +44,9 @@ ENV PYTHONPATH "${PYTHONPATH}:/root/app/"
 ENV PATH="/root/.venv/bin/:${PATH}"
 ENV DEBUG no
 ENV USE_LINUX_BRIDGE false
+ENV UVICORN_PORT="8080"
+ENV UVICORN_HOST="0.0.0.0"
+
+
 
 ENTRYPOINT [ "app/init" ]

@@ -406,7 +406,7 @@ def configure_container_vlan(container_name: str, info: ContainerInfoDict) -> No
 def check_sys_module() -> None:
     """Check if OVS module is installed."""
     if USE_LINUX_BRIDGE:
-        run_command("sysctl net.bridge.bridge-nf-call-iptables=0")
+        run_command("sysctl net.bridge.bridge-nf-call-iptables=0", check=False)
         return
 
     lsmod_out = run(["/bin/lsmod"], check=True, capture_output=True)
