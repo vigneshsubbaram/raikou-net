@@ -14,6 +14,9 @@ while [ -z $(ls /sys/class/net | grep -w eth1) ]; do
 done
 ip link set eth1 up
 
+# Adding sleep to push configuration files in their places before the server starts.
+sleep 15
+
 keactrl start
 
 # Run FAST API only in ENV is set
