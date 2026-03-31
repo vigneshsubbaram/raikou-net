@@ -409,7 +409,7 @@ def check_sys_module() -> None:
         run_command("sysctl net.bridge.bridge-nf-call-iptables=0", check=False)
         return
 
-    lsmod_out = run(["/bin/lsmod"], check=True, capture_output=True)
+    lsmod_out = run(["/sbin/lsmod"], check=True, capture_output=True)
     try:
         run(
             ["grep", "openvswitch"],

@@ -57,6 +57,7 @@ def _add_iface_to_bridge(bridge_name: str, parent_info: IfaceInfoDict) -> None:
 
     if "usb:" in parent:
         parent_info["iface"] = get_usb_interface(parent.split(":")[-1])
+        parent = parent_info["iface"]
 
     _LOGGER.debug("Trying to bring up parent %s for bridge %s", parent, bridge_name)
     run_command(f"ip link set {parent} up")
@@ -320,7 +321,7 @@ async def main() -> None:  # noqa: C901
 
     check_sys_module()
 
-    fail_count = cast(int, get_db("failed", 0))
+    fail_count = cast(int, get_db("failed", 0))  # noqa: TC006
 
     while True:
         config = get_config()
