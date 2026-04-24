@@ -21,7 +21,7 @@ RUN wget -q http://daniel-lange.com/software/bind.c -O bind.c \
 FROM python:3.13.5-slim-bookworm
 
 LABEL maintainer="ktewari@libertyglobal.com"
-LABEL version="1.9.2p1"
+LABEL version="1.2.0"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN echo "root:bigfoot1" | chpasswd
